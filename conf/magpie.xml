@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<application>
+    <accept_matrix>
+        <variant name="json" type="application/json"/>
+        <variant name="html" type="text/html"/>
+    </accept_matrix>
+    <pipeline>
+        <match type="accept" variant_name="json">
+            <add class="Magpie::Transformer::JSON"/>
+        </match>
+        <match type="accept" variant_name="html">
+            <add class="Firebrand::Transformer::TT2">
+                <parameters>
+                    <template_path>root/src</template_path>
+                </parameters>
+            </add>
+        </match>
+    </pipeline>
+</application>
