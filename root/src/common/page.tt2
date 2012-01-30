@@ -20,15 +20,9 @@
     <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.7.1.min.js"><\/script>')</script>
 
     <!-- scripts concatenated and minified via ant build script-->
-    <script src="/js/vendors/ember-latest.min.js"></script>    
+    <script src="/js/vendors/ember-latest.min.js"></script>
     <script src="/js/vendors/ember-rest.js"></script>
-    <script src="/js/app/app.js"></script>
-    <script src="/js/app/models/contact.js"></script>    
-    <script src="/js/app/controllers/contacts.js"></script>
-    <script src="/js/app/views/list.js"></script> 
-    <script src="/js/app/views/show.js"></script>
-    <script src="/js/app/helpers/forms.js"></script>
-    
+    <script src="/js/app.js"></script>
     <script type="text/x-handlebars" data-template-name="list-template">
     <table>
       <thead>
@@ -84,8 +78,6 @@
     {{/with}}
     <a href="#" {{action "cancelForm"}}>Cancel</a>
     </script>
-    <script src="/js/plugins.js"></script>
-    <script src="/js/script.js"></script>    
     <!-- end scripts-->
 	
 	

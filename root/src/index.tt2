@@ -9,7 +9,7 @@
 
 <script type="text/javascript">
   $(function() {
-    App.contactsController.findAll([%- resource.data.json -%]);
+    App.contactsController.findAll();
   });
 </script>
 

@@ -11,7 +11,6 @@ extends qw(Magpie::Resource);
 has contacts => (
     isa     => 'ArrayRef',
     traits  => ['Array'],
-    lazy    => 1,
     default => sub {
         [   {   first_name => 'Alligator',
                 last_name  => 'Descarts',
@@ -26,6 +25,7 @@ has contacts => (
         add_contact    => 'push',
         get_contact    => 'get',
         delete_contact => 'delete',
+        count_contacts => 'count',
     },
 );
 
@@ -57,15 +57,16 @@ sub POST {
     else {
         $args{$_} = $req->param($_) for $req->param;
     }
-    my $id = sha256_hex( \%args );
-    $self->set_contact( $id => \%args );
+    $self->add_contact( \%args );
 
     my $path = $req->path_info;
     $path =~ s|^/||;
     $path =~ s|/$||;
     $self->state('created');
     $self->response->status(201);
-    $self->response->header( 'Location' => $req->base . $path . "/$id" );
+    $self->response->header(
+        'Location' => $req->base . $path . "/" . $self->count_contacts );
+    $self->data( { id => $self->count_contacts, %args } );
     return OK;
 }
 

@@ -9,7 +9,7 @@
             <add class="Firebrand::Resource::Contacts"/>
         </match>
         <match type="accept" variant_name="json">
-            <add class="Firebrand::Transformer::JSON"/>
+            <add class="Magpie::Transformer::JSON"/>
         </match>
         <match type="accept" variant_name="html">
             <add class="Firebrand::Transformer::TT2">
