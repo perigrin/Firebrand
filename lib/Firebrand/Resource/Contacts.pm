@@ -4,21 +4,22 @@ use Moose;
 use namespace::autoclean;
 
 use Magpie::Constants;
-use Digest::SHA qw(sha256_hex);
-
 extends qw(Magpie::Resource);
 
 has contacts => (
     isa     => 'ArrayRef',
     traits  => ['Array'],
+    reader  => '_raw_contacts',
     default => sub {
-        [   {   first_name => 'Alligator',
+        state $data = [    #  make sure this exists across requests
+            {   first_name => 'Alligator',
                 last_name  => 'Descarts',
             },
             {   first_name => 'Harold',
                 last_name  => 'McBoingBoing',
             }
         ];
+        return $data;
     },
     handles => {
         contacts       => 'elements',
@@ -28,6 +29,8 @@ has contacts => (
         count_contacts => 'count',
     },
 );
+
+use DDP;
 
 sub GET {
     my $self = shift;
@@ -39,7 +42,7 @@ sub GET {
         = defined($id)
         ? $self->get_contact($id)
         : [ map { $_->{id} = $i++; $_ } $self->contacts ];
-
+    warn p $self->_raw_contacts;
     $self->data($data);
     return OK;
 }
@@ -57,8 +60,15 @@ sub POST {
     else {
         $args{$_} = $req->param($_) for $req->param;
     }
-    $self->add_contact( \%args );
+    my $data = {
+        first_name => $args{'contact[first_name]'},
+        last_name  => $args{'contact[last_name]'}
+    };
+    $self->add_contact($data);
 
+    warn p %args;
+    warn p $data;
+    warn p $self->_raw_contacts;
     my $path = $req->path_info;
     $path =~ s|^/||;
     $path =~ s|/$||;
@@ -66,7 +76,9 @@ sub POST {
     $self->response->status(201);
     $self->response->header(
         'Location' => $req->base . $path . "/" . $self->count_contacts );
-    $self->data( { id => $self->count_contacts, %args } );
+    $data->{id} = $self->count_contacts;
+
+    $self->data($data);
     return OK;
 }
 

@@ -8,18 +8,13 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 	<title>Firebrand</title>
-	<meta name="description" content="">
-	<meta name="author" content="">
 
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-
 	<link rel="stylesheet" href="/css/style.css">
 
 	<script src="/js/vendors/modernizr-2.0.6.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.7.1.min.js"><\/script>')</script>
-
-    <!-- scripts concatenated and minified via ant build script-->
     <script src="/js/vendors/ember-latest.min.js"></script>
     <script src="/js/vendors/ember-rest.js"></script>
     <script src="/js/app.js"></script>
@@ -49,7 +44,7 @@
       <a href="#" {{action "showNew"}}>New Contact</a>
       <a href="#" {{action "refreshListing"}}>Refresh Listing</a>
     </div>
-    </script>        
+    </script>
     <script type="text/x-handlebars" data-template-name="show-template">
     <td>{{contact.id}}</td>
     <td class="data">
@@ -79,24 +74,12 @@
     <a href="#" {{action "cancelForm"}}>Cancel</a>
     </script>
     <!-- end scripts-->
-	
-	
 </head>
 <body>
-
 <div id="container">
 	<header><h1>Firebrand</h1></header>
-	<div id="main" role="main">
-        [% content %]
-	</div>
+	<div id="main" role="main">[% content %]</div>
 	<footer>Copyright &copy; 2012 &ndash; Chris Prather </footer>
-</div> <!--! end of #container -->
-
-<script>
-	var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']]; // Change UA-XXXXX-X to be your site's ID
-	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
-	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-	s.parentNode.insertBefore(g,s)}(document,'script'));
-</script>
+</div>
 </body>
 </html>
