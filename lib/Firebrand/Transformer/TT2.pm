@@ -7,7 +7,8 @@ use Plack::Session;
 
 sub get_tt_conf {
     shift->tt_conf(
-        {   
+        {
+
             # DEBUG => 'all'
             RELATIVE => 1,
         }
@@ -34,7 +35,9 @@ sub get_template {
         = -f "$path/$file.tt2"       ? "$file.tt2"
         : -f "$path/$file/index.tt2" ? "$file/index.tt2"
         :                              "error.tt2";
-
+    warn
+        "Couldn't find $path/$file.tt2 or $path/$file/index.tt2 falling back to error.tt2"
+        if $template eq 'error.tt2';
     $self->template_file($template);
     return OK;
 

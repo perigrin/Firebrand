@@ -5,8 +5,11 @@
         <variant name="html" type="text/html"/>
     </accept_matrix>
     <pipeline>
+        <match type="regexp" rule="^/">
+            <add class="Firebrand::Resource::Contacts"/>
+        </match>
         <match type="accept" variant_name="json">
-            <add class="Magpie::Transformer::JSON"/>
+            <add class="Firebrand::Transformer::JSON"/>
         </match>
         <match type="accept" variant_name="html">
             <add class="Firebrand::Transformer::TT2">
