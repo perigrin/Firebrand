@@ -55,7 +55,8 @@ App.EditContactView = Ember.View.extend({
 
         contact.save()
         .fail(function(e) {
-            App.displayError(e);
+            log(e);
+            // App.displayError(e);
         })
         .done(function() {
             var parentView = self.get("parentView");
