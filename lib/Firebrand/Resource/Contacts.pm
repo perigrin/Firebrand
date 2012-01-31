@@ -25,6 +25,7 @@ has contacts => (
         contacts       => 'elements',
         add_contact    => 'push',
         get_contact    => 'get',
+        set_contact    => 'set',
         delete_contact => 'delete',
         count_contacts => 'count',
     },
