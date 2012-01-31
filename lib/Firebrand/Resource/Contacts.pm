@@ -31,8 +31,6 @@ has contacts => (
     },
 );
 
-use DDP;
-
 sub GET {
     my $self = shift;
     $self->parent_handler->resource($self);
@@ -43,7 +41,6 @@ sub GET {
         = defined($id)
         ? $self->get_contact($id)
         : [ map { $_->{id} = $i++; $_ } $self->contacts ];
-    warn p $self->_raw_contacts;
     $self->data($data);
     return OK;
 }
@@ -67,9 +64,6 @@ sub POST {
     };
     $self->add_contact($data);
 
-    warn p %args;
-    warn p $data;
-    warn p $self->_raw_contacts;
     my $path = $req->path_info;
     $path =~ s|^/||;
     $path =~ s|/$||;
