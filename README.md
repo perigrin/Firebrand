@@ -10,4 +10,4 @@ from Rails to Magpie that's to be expected.
 All of the EmberJS/EmberREST code is stolen/based upon [this series of blog posts][1].
 
 
-[1]: http://www.cerebris.com/blog/2012/01/26/beginning-ember-js-on-rails-part-1/
+[1]: http://www.cerebris.com/blog/2012/01/24/beginning-ember-js-on-rails-part-1/
