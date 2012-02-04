@@ -4,7 +4,7 @@ This is a test application for using EmberJS + EmberREST and Magpie. Mostly I
 wanted to see if EmberJS would do what I wanted for working as a clean AJAX
 driven front-end client for Magpie based applications. Answer: basically yes.
 
-There are still a few bugs in this, but considering I was trying to translate
+There may still be a few bugs in this, but considering I was trying to translate
 from Rails to Magpie that's to be expected.
 
 All of the EmberJS/EmberREST code is stolen/based upon [this series of blog posts][1].
