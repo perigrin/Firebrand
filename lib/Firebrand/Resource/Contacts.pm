@@ -13,7 +13,7 @@ has contacts => (
     default => sub {
         state $data = [    #  make sure this exists across requests
             {   first_name => 'Alligator',
-                last_name  => 'Descarts',
+                last_name  => 'Descartes',
             },
             {   first_name => 'Harold',
                 last_name  => 'McBoingBoing',
