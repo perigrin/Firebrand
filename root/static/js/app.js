@@ -109,7 +109,8 @@ App.NewContactView = Ember.View.extend({
 
         contact.save()
         .fail(function(e) {
-            App.displayError(e);
+                log(e);
+            //App.displayError(e);
         })
         .done(function() {
             App.contactsController.pushObject(contact);
