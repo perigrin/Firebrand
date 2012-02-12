@@ -8,8 +8,8 @@ use Bread::Board;
 use Plack::Builder;
 use Plack::Middleware::Magpie;
 use Plack::Middleware::Static;
-use Plack::Middleware::Session;
 use Plack::Middleware::MethodOverride;
+use KiokuDB;
 
 has assets => (
     is      => 'ro',
@@ -20,14 +20,22 @@ has assets => (
 
 sub _build_assets {
     my $self = shift;
-    return container '' => as {};
+    my $assets = container '' => as {
+        service 'kioku_dir' => (
+            lifecycle => 'Singleton',
+            block     => sub {
+                my $s = shift;
+                KiokuDB->connect( 'dbi:SQLite::memory:', create => 1, );
+            }
+        );
+    };
+    return $assets;
 }
 
 sub app {
     my $self = shift;
     builder {
         enable 'MethodOverride';
-        enable 'Session';
         enable "Static",
             path => qr{(?:^/(?:images|js|css)/|\.(?:txt|html|xml|ico)$)},
             root => 'root/static';
